@@ -8,13 +8,13 @@ var GAME = {};
 GAME.SIZE = { x: 1280, y: 960 };
 
 
-define(["Loader", "assets", 'Backgammon', "Board", '../../dumbLib', "../../mule-js-sdk/sdk"],
-  function(Loader, generateAssets, Backgammon, Board, dumbLib, sdk){
+define(["Loader", "assets", 'Backgammon', "Board", 'mule-sdk'],
+  function(Loader, generateAssets, Backgammon, Board, sdk){
     var SDK = sdk('../../'),
       Spinal = SDK.Spinal();
 
-    var themeFromUrl = dumbLib.getUrlParameter('theme'),
-      scale = (dumbLib.getUrlParameter('scale') || 65) / 100,
+    var themeFromUrl = SDK.utils.getUrlParameter('theme'),
+      scale = (SDK.utils.getUrlParameter('scale') || 65) / 100,
       ourAssets = generateAssets(themeFromUrl);
 
     var STATES = {pregame: 0, ingame: 1, loading: 2};

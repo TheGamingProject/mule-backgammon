@@ -1,5 +1,5 @@
 
-define(['../../mule-js-sdk/sdk', 'BackgammonLogic', 'BackgammonState'], function (sdk, BackgammonLogic, BackgammonState) {
+define(['mule-sdk', 'BackgammonLogic', 'BackgammonState'], function (sdk, BackgammonLogic, BackgammonState) {
   return function (myPlayerRel, whosTurn, gameState, boardDisplayObject, submitTurnCallback) {
     var that = {},
       SDK = sdk('../../'),

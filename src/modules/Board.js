@@ -145,7 +145,7 @@ define(['RenderHelper'], function (RenderHelper) {
       images.board.background = loaderQueue.getItem('board_background').src;
       images.board.overlay = loaderQueue.getItem('board_overlay').src;
 
-      _(6).times(function (i) {
+      _.times(6, function (i) {
         var key = 'die' + (i+1);
         images.die[key] = loaderQueue.getItem(key).src;
       });
@@ -206,7 +206,7 @@ define(['RenderHelper'], function (RenderHelper) {
       that.addChild(selectionBitmap);
 
       moveIndicatorBitmapArray = [];
-      _(maxMoveLocationsForOneToken).times(function () {
+      _.times(maxMoveLocationsForOneToken, function () {
         var bitmap = new createjs.Bitmap(indicatorImages.move);
         bitmap.visible = false;
         that.addChild(bitmap);
@@ -214,7 +214,7 @@ define(['RenderHelper'], function (RenderHelper) {
       });
 
       knockIndicatorBitmapArray = [];
-      _(maxMoveLocationsForOneToken).times(function () {
+      _.times(maxMoveLocationsForOneToken, function () {
         var bitmap = new createjs.Bitmap(indicatorImages.knock);
         bitmap.visible = false;
         that.addChild(bitmap);
@@ -236,7 +236,7 @@ define(['RenderHelper'], function (RenderHelper) {
         undoButtonClickedCallback();
       });
       // initialize tokenBitmaps
-      _(24).times(function (n) {
+      _.times(24, function (n) {
         tokenBitmaps[n] = [];
       });
       tokenBitmaps['blackScoreSpace'] = [];
@@ -324,7 +324,7 @@ define(['RenderHelper'], function (RenderHelper) {
         }
     };
 
-    var reorderBotTokens = function (tokenBitmaps) {
+    var reorderBotTokens = function (tokenBitmapsArray) {
       // UGHly function, we need to bring the stacks to the front
       //   starting with the top most token layer (5/4/3/2/1)
       //   most stacks will be the bottom layer (5)
@@ -332,33 +332,33 @@ define(['RenderHelper'], function (RenderHelper) {
       //   in the reverse order they are in the array
       // PRETTIER z-indexing, (but at what cost?)
       var i,
-        amt = tokenBitmaps.length,
+        amt = tokenBitmapsArray.length,
         maxZ = that.getNumChildren() - 1;
       for (i=4;i>=0;i--) {
-        if (!tokenBitmaps[i]) continue;
-        that.setChildIndex(tokenBitmaps[i], maxZ);
+        if (!tokenBitmapsArray[i]) continue;
+        that.setChildIndex(tokenBitmapsArray[i], maxZ);
       }
       for (i=8;i>=5;i--) {
-        if (!tokenBitmaps[i]) continue;
-        that.setChildIndex(tokenBitmaps[i], maxZ);
+        if (!tokenBitmapsArray[i]) continue;
+        that.setChildIndex(tokenBitmapsArray[i], maxZ);
       }
       for (i=11;i>=9;i--) {
-        if (!tokenBitmaps[i]) continue;
-        that.setChildIndex(tokenBitmaps[i], maxZ);
+        if (!tokenBitmapsArray[i]) continue;
+        that.setChildIndex(tokenBitmapsArray[i], maxZ);
       }
       for (i=13;i>=12;i--) {
-        if (!tokenBitmaps[i]) continue;
-        that.setChildIndex(tokenBitmaps[i], maxZ);
+        if (!tokenBitmapsArray[i]) continue;
+        that.setChildIndex(tokenBitmapsArray[i], maxZ);
       }
       for (i=14;i>=14;i--) { //lol
-        if (!tokenBitmaps[i]) continue;
-        that.setChildIndex(tokenBitmaps[i], maxZ);
+        if (!tokenBitmapsArray[i]) continue;
+        that.setChildIndex(tokenBitmapsArray[i], maxZ);
       }
     };
 
     that.drawTokens = function (color, loc, amt) {
       var i,
-        tokenBitmaps = getTokenBitmapArray(loc);
+        tokenBitmapsArray = getTokenBitmapArray(loc);
       //console.log('drawing initial tokens at ' + loc);
 
       for (i=0; i<amt; i++) {
@@ -378,11 +378,11 @@ define(['RenderHelper'], function (RenderHelper) {
         that.addChild(newBitmap);
 
         // adjust token bitmap arrays
-        tokenBitmaps.push(newBitmap);
+        tokenBitmapsArray.push(newBitmap);
       }
 
       if (!isTopSpace(loc)) {
-        reorderBotTokens(tokenBitmaps);
+        reorderBotTokens(tokenBitmapsArray);
       }
     };
 

@@ -39,7 +39,7 @@ define(function () {
         'redScoreSpace': {},
         'blackScoreSpace': {}
       };
-      _(24).times(function (num) {
+      _.times(24, function (num) {
         backgammonBoard[num + 1] = {};
       });
       _.each(originalGameState.pieces, function (piece) {
