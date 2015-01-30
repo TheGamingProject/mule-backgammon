@@ -80,7 +80,7 @@ define(["Loader", "assets", 'Backgammon', "Board", 'mule-sdk'],
           successCallback(); // makes unsubmittabled
           //TODO lock the submit & reset button
         })
-        .fail(function (err) {
+        .catch(function (err) {
           if (failureCallback) { failureCallback(err); }
           alert(JSON.stringify(err));
         });
