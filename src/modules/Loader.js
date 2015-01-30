@@ -1,0 +1,135 @@
+/* ripped from rick & the ghost */
+define(["LoadScreen"], function(LoadScreen){
+//  var LOADING_UPDATE = 10; //for loading screen TODO rename the variable
+
+  var that = {};
+
+  var loadScreen;
+
+  var stills = {};
+  var spriteSheets = {};
+
+  var loadedList = {};
+
+  var queue = new createjs.LoadQueue();
+  queue.installPlugin(createjs.Sound);
+
+  createjs.Sound.registerPlugins([createjs.HTMLAudioPlugin]);
+  createjs.Sound.alternateExtensions = ["mp3"];
+
+  // Public Functions
+
+  that.doLoadScreen = function(parentContainer, listOfStills, listOfSounds, finishedLoadingCallback){
+    var totalResources = 0;
+
+    var loadList = [];
+    $.merge(loadList, listOfStills);
+    totalResources = loadList.length + listOfSounds.length;
+
+    //callback defs
+    var individualLoadingCallback = function(evt){
+      var resource = evt.item;
+      if(!resource.id) debugger;
+
+      if(loadScreen)
+        loadScreen.progressByOneResource(resource.id);
+
+      console.log("finished loaded: "+resource.id +" ["+loadScreen.getLoadedCount()+"]");
+
+      loadedList[resource.id] = resource;
+    };
+
+    //check when everythings loaded
+    var allLoadedCallback = function(){
+      var loadedCount = loadScreen.getLoadedCount();
+      if(loadedCount > totalResources){
+        throw "wtf, how did this happen!?";
+      } else if (loadedCount === totalResources){ //when everythings loaded...
+        //remove the container from parent, and call the callback
+        loadScreen.removeFromParent();
+
+        return finishedLoadingCallback(queue);
+      }
+    };
+
+    //init the loadscreen
+    loadScreen = LoadScreen({id: "default", "parentContainer": parentContainer, "totalResources": totalResources});
+
+    //then start the load
+    that.startLoad(loadList, listOfSounds, allLoadedCallback, individualLoadingCallback);
+  };
+
+  that.startLoad = function(imageList, soundList, allLoadedCallback, individualLoadedCallback){
+    queue.on("fileload", individualLoadedCallback, this);
+    queue.on("complete", allLoadedCallback, this);
+    $.each(soundList, function(key, value){
+      queue.loadFile(value);
+    });
+    queue.on("error", function(evt){
+      throw "error on resource: "+evt.item.id+"=\"" + evt.item.src + "\"";
+    });
+
+    queue.loadManifest(imageList);
+  };
+
+  //TODO redo these get functions sometime, they look ugly
+  that.getAnimation = function(resourceName){
+    if(!animations[resourceName]){
+      throw "Animation doesn't exist: "+resourceName;
+    }
+    if(spriteSheets[resourceName]){
+      console.log("getting cached spritesheet:" +resourceName);
+      return spriteSheets[resourceName];
+    }
+    console.log("(not-fly) loading spritesheet:"+resourceName); //still making a spritesheet but using cached image
+    spriteSheets[resourceName] = new createjs.SpriteSheet( animations[resourceName]);
+
+    return spriteSheets[resourceName];
+  };
+
+  that.getStill = function(resourceName){
+    if(stills[resourceName]){
+      console.log("getting cached still: "+resourceName)
+      return stills[resourceName];
+    }
+
+    console.log("(not-fly)loading still: "+resourceName);
+
+    var imageObj = new Image();
+    //imageObj.onload = function(){};
+    imageObj.src = resourceName;
+
+
+    stills[resourceName] = imageObj;
+    return stills[resourceName];
+  };
+
+  that.getLoadedAsset = function (id) {
+    return loadedList[id];
+  };
+
+  //dont need a getSound() because SoundJS knowz
+
+  that.getResourceInfo = function(args){
+    var resourceName = args.resourceName;
+    if (!resourceName)
+      throw "no resourceName";
+
+    var type = args.type; //sound, animation, or still
+
+    var resource = loadedList[resourceName];
+    if(!resource /* TODO or if not loaded */)
+      return null;
+
+    if(!type)
+      return resource;
+
+    if (type === resource.type)
+      return resource;
+
+    debugger;
+    return null;
+  };
+
+  return that;
+});

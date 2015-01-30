@@ -1,0 +1,354 @@
+{
+  "name" : "Backgammon",
+  "turnSubmitStyle" : "roundRobin",
+
+  "staticBoardSettings" : {
+    "boardStyle" : "linear"
+  },
+
+  "gameSettings" : {
+    "playerLimit" : 2,
+    "customBoardSettings" : {
+    }
+  },
+
+  "rules" : {
+    "spaces" : [
+      {
+        "className": "ScoreSpace",
+        "spots": -1,
+        "attributes": {
+          "player" : ["red", "black"]
+        }
+      },
+      {
+        "className": "RegularSpace",
+        "spots": -1,
+        "attributes": {
+          "inGammonBox": ["null", "red", "black"]
+        }
+      },
+      {
+        "className": "JailSpace",
+        "spots": -1,
+        "attributes": {
+          "player" : ["red", "black"]
+        }
+      }
+    ],
+
+    "pieces" : [
+      {
+        "className": "stones"
+      }
+    ],
+
+    "board" : [
+      {
+        "id": "blackScoreSpace",
+        "class": "ScoreSpace",
+        "attributes": {
+          "player": "black"
+        },
+        "edges" : []
+      },
+      {
+        "id": "redScoreSpace",
+        "class": "ScoreSpace",
+        "attributes": {
+          "player": "red"
+        },
+        "edges" : []
+      },
+
+      {
+        "id": "blackJail",
+        "class": "JailSpace",
+        "attributes": {
+          "player": "black"
+        },
+        "edges": []
+      },
+      {
+        "id": "redJail",
+        "class": "JailSpace",
+        "attributes": {
+          "player": "red"
+        },
+        "edges": []
+      },
+
+      {
+        "id": "1",
+        "class": "RegularSpace",
+        "attributes": {
+          "inGammonBox": "black"
+        },
+        "edges" : [
+          {"id": "blackScoreSpace", "moveableBy": "black"},
+          {"id": "2", "moveableBy": "red"}
+        ]
+      },
+      {
+        "id": "2",
+        "class": "RegularSpace",
+        "attributes": {
+          "inGammonBox": "black"
+        },
+        "edges" : [
+          {"id": "1", "moveableBy": "black"},
+          {"id": "3", "moveableBy": "red"}
+        ]
+      },
+      {
+        "id": "3",
+        "class": "RegularSpace",
+        "attributes": {
+          "inGammonBox": "black"
+        },
+        "edges" : [
+          {"id": "2", "moveableBy": "black"},
+          {"id": "4", "moveableBy": "red"}
+        ]
+      },
+      {
+        "id": "4",
+        "class": "RegularSpace",
+        "attributes": {
+          "inGammonBox": "black"
+        },
+        "edges" : [
+          {"id": "3", "moveableBy": "black"},
+          {"id": "5", "moveableBy": "red"}
+        ]
+      },
+      {
+        "id": "5",
+        "class": "RegularSpace",
+        "attributes": {
+          "inGammonBox": "black"
+        },
+        "edges" : [
+          {"id": "4", "moveableBy": "black"},
+          {"id": "6", "moveableBy": "red"}
+        ]
+      },
+      {
+        "id": "6",
+        "class": "RegularSpace",
+        "attributes": {
+          "inGammonBox": "black"
+        },
+        "edges" : [
+          {"id": "5", "moveableBy": "black"},
+          {"id": "7", "moveableBy": "red"}
+        ]
+      },
+      {
+        "id": "7",
+        "class": "RegularSpace",
+        "edges" : [
+          {"id": "6", "moveableBy": "black"},
+          {"id": "8", "moveableBy": "red"}
+        ]
+      },
+      {
+        "id": "8",
+        "class": "RegularSpace",
+        "edges" : [
+          {"id": "7", "moveableBy": "black"},
+          {"id": "9", "moveableBy": "red"}
+        ]
+      },
+      {
+        "id": "9",
+        "class": "RegularSpace",
+        "edges" : [
+          {"id": "8", "moveableBy": "black"},
+          {"id": "10", "moveableBy": "red"}
+        ]
+      },
+      {
+        "id": "10",
+        "class": "RegularSpace",
+        "edges" : [
+          {"id": "9", "moveableBy": "black"},
+          {"id": "11", "moveableBy": "red"}
+        ]
+      },
+      {
+        "id": "11",
+        "class": "RegularSpace",
+        "edges" : [
+          {"id": "10", "moveableBy": "black"},
+          {"id": "12", "moveableBy": "red"}
+        ]
+      },
+      {
+        "id": "12",
+        "class": "RegularSpace",
+        "edges" : [
+          {"id": "11", "moveableBy": "black"},
+          {"id": "13", "moveableBy": "red"}
+        ]
+      },
+      {
+        "id": "13",
+        "class": "RegularSpace",
+        "edges" : [
+          {"id": "12", "moveableBy": "black"},
+          {"id": "14", "moveableBy": "red"}
+        ]
+      },
+      {
+        "id": "14",
+        "class": "RegularSpace",
+        "edges" : [
+          {"id": "13", "moveableBy": "black"},
+          {"id": "15", "moveableBy": "red"}
+        ]
+      },
+      {
+        "id": "15",
+        "class": "RegularSpace",
+        "edges" : [
+          {"id": "14", "moveableBy": "black"},
+          {"id": "16", "moveableBy": "red"}
+        ]
+      },
+      {
+        "id": "16",
+        "class": "RegularSpace",
+        "edges" : [
+          {"id": "15", "moveableBy": "black"},
+          {"id": "17", "moveableBy": "red"}
+        ]
+      },
+      {
+        "id": "17",
+        "class": "RegularSpace",
+        "edges" : [
+          {"id": "16", "moveableBy": "black"},
+          {"id": "18", "moveableBy": "red"}
+        ]
+      },
+      {
+        "id": "18",
+        "class": "RegularSpace",
+        "edges" : [
+          {"id": "17", "moveableBy": "black"},
+          {"id": "19", "moveableBy": "red"}
+        ]
+      },
+      {
+        "id": "19",
+        "class": "RegularSpace",
+        "attributes": {
+          "inGammonBox": "red"
+        },
+        "edges" : [
+          {"id": "18", "moveableBy": "black"},
+          {"id": "20", "moveableBy": "red"}
+        ]
+      },
+      {
+        "id": "20",
+        "class": "RegularSpace",
+        "attributes": {
+          "inGammonBox": "red"
+        },
+        "edges" : [
+          {"id": "19", "moveableBy": "black"},
+          {"id": "21", "moveableBy": "red"}
+        ]
+      },
+      {
+        "id": "21",
+        "class": "RegularSpace",
+        "attributes": {
+          "inGammonBox": "red"
+        },
+        "edges" : [
+          {"id": "20", "moveableBy": "black"},
+          {"id": "22", "moveableBy": "red"}
+        ]
+      },
+      {
+        "id": "22",
+        "class": "RegularSpace",
+        "attributes": {
+          "inGammonBox": "red"
+        },
+        "edges" : [
+          {"id": "21", "moveableBy": "black"},
+          {"id": "23", "moveableBy": "red"}
+        ]
+      },
+      {
+        "id": "23",
+        "class": "RegularSpace",
+        "attributes": {
+          "inGammonBox": "red"
+        },
+        "edges" : [
+          {"id": "22", "moveableBy": "black"},
+          {"id": "24", "moveableBy": "red"}
+        ]
+      },
+      {
+        "id": "24",
+        "class": "RegularSpace",
+        "attributes": {
+          "inGammonBox": "red"
+        },
+        "edges" : [
+          {"id": "23", "moveableBy": "black"},
+          {"id": "redScoreSpace", "moveableBy": "red"}
+        ]
+      }
+    ],
+
+    "startingPieces": {
+      "p1": [
+        { "class": "stones", "spaceId": "24" , "attributes": {"color": "black"}},
+        { "class": "stones", "spaceId": "24" , "attributes": {"color": "black"}},
+
+        { "class": "stones", "spaceId": "13" , "attributes": {"color": "black"}},
+        { "class": "stones", "spaceId": "13" , "attributes": {"color": "black"}},
+        { "class": "stones", "spaceId": "13" , "attributes": {"color": "black"}},
+        { "class": "stones", "spaceId": "13" , "attributes": {"color": "black"}},
+        { "class": "stones", "spaceId": "13" , "attributes": {"color": "black"}},
+
+        { "class": "stones", "spaceId": "8" , "attributes": {"color": "black"}},
+        { "class": "stones", "spaceId": "8" , "attributes": {"color": "black"}},
+        { "class": "stones", "spaceId": "8" , "attributes": {"color": "black"}},
+
+        { "class": "stones", "spaceId": "6" , "attributes": {"color": "black"}},
+        { "class": "stones", "spaceId": "6" , "attributes": {"color": "black"}},
+        { "class": "stones", "spaceId": "6" , "attributes": {"color": "black"}},
+        { "class": "stones", "spaceId": "6" , "attributes": {"color": "black"}},
+        { "class": "stones", "spaceId": "6" , "attributes": {"color": "black"}}
+      ],
+      "p2": [
+        { "class": "stones", "spaceId": "1" , "attributes": {"color": "red"}},
+        { "class": "stones", "spaceId": "1" , "attributes": {"color": "red"}},
+
+        { "class": "stones", "spaceId": "12" , "attributes": {"color": "red"}},
+        { "class": "stones", "spaceId": "12" , "attributes": {"color": "red"}},
+        { "class": "stones", "spaceId": "12" , "attributes": {"color": "red"}},
+        { "class": "stones", "spaceId": "12" , "attributes": {"color": "red"}},
+        { "class": "stones", "spaceId": "12" , "attributes": {"color": "red"}},
+
+        { "class": "stones", "spaceId": "17" , "attributes": {"color": "red"}},
+        { "class": "stones", "spaceId": "17" , "attributes": {"color": "red"}},
+        { "class": "stones", "spaceId": "17" , "attributes": {"color": "red"}},
+
+        { "class": "stones", "spaceId": "19" , "attributes": {"color": "red"}},
+        { "class": "stones", "spaceId": "19" , "attributes": {"color": "red"}},
+        { "class": "stones", "spaceId": "19" , "attributes": {"color": "red"}},
+        { "class": "stones", "spaceId": "19" , "attributes": {"color": "red"}},
+        { "class": "stones", "spaceId": "19" , "attributes": {"color": "red"}}
+      ]
+    }
+  }
+}

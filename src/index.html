@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Backgammon</title>
+    <script src="../lib/createjs-2013.12.12.min.js"></script>
+    <script src="../lib/jquery-1.11.0.min.js"></script>
+    <script src="../lib/underscore-min.js"></script>
+
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
+
+    <link rel="stylesheet" href="../css/boardView.css">
+
+    <link rel="stylesheet" href="backgammon.css">
+    <link rel="stylesheet" href="fonts.css">
+
+    <script data-main="modules/main" src="../lib/require.js"></script>
+</head>
+
+
+<body>
+
+<div class="container col-centered">
+    <div class="row">
+        <canvas id="myCanvas" class="center-block"></canvas>
+    </div>
+    <div class="row">
+        <a href="../../../"> Back to Mule-Frontend </a>
+        <br>
+        <span id="debugLabel">Debug Label</span>
+    </div>
+    <div class="whoturn-popup">
+        <h2><b id='turnlabel'></b></h2>
+    </div>
+</div>
+
+</body>
+</html>
