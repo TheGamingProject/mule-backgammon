@@ -1,5 +1,4 @@
-var Q = require('q'),
-  _ = require('lodash');
+var _ = require('lodash');
 
 var actionsUtils = require('mule-utils/actionsUtils'),
   bgUtils = require('./bgUtils');
@@ -84,7 +83,7 @@ module.exports = function (M, playerRel, actions) {
 
   //// CHECK IF MOVES INTO SCORESPACE ARE VALID ////
   var playersScoreSpaceId = (playerRel === 'p1' ? 'blackScoreSpace' : 'redScoreSpace'),
-    scoredPiecesCount = M.getPieces({spaceId: playersScoreSpaceId, ownerId: playerRel}).length, 
+    scoredPiecesCount = M.getPieces({spaceId: playersScoreSpaceId, ownerId: playerRel}).length,
     movesIntoScoreSpaceCount = 0,
     movesIntoGammonAreaCount = 0,
     movesIntoScoreSpaceFromOutsideOfGammonAreaCount = 0;
@@ -120,7 +119,7 @@ module.exports = function (M, playerRel, actions) {
     });
   });
 
-  // 2. if any moves were attempted, check how many pieces are in the gammon area (spaces 1-6 for black-p1, spaces 19-24 for red-p2) 
+  // 2. if any moves were attempted, check how many pieces are in the gammon area (spaces 1-6 for black-p1, spaces 19-24 for red-p2)
   if (movesIntoScoreSpaceCount > 0) {
     var gammonPieceCount = getPiecesCountInGammonArea(M, playerRel, playerRel);
 
@@ -143,7 +142,7 @@ module.exports = function (M, playerRel, actions) {
 
   // TODO check all rolls were used exactly once (if moves are available)
 
-  return Q(actions);
+  return Promise.resolve(actions);
 };
 
 var gammonSpaceIds = {

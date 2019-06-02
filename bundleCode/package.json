@@ -10,7 +10,6 @@
   "license": "ISC",
   "dependencies": {
     "mule-utils" : "git+https://github.com/nik0kin/mule-utils.git#master",
-    "lodash": "^2.4.1",
-    "q": "^1.1.2"
+    "lodash": "^4.17.11"
   }
 }

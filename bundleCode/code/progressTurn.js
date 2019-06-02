@@ -1,5 +1,4 @@
-var _ = require('lodash'),
-  Q = require('q');
+var _ = require('lodash');
 
 var actionsUtils = require('mule-utils/actionsUtils'),
   roller = require('./roller');
@@ -14,6 +13,6 @@ module.exports = function (M) {
   return M.persistQ()
     .then(function () {
       //return meta data
-      return Q({});
+      return {};
     });
 };

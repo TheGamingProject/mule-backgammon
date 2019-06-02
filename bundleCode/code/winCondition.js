@@ -1,6 +1,3 @@
-var Q = require('q'),
-  _ = require('lodash');
-
 module.exports = function (M) {
   var checkIfPlayerWon = function (playerRel) {
     var playersScoreSpaceId = playerRel === 'p1' ? 'blackScoreSpace' : 'redScoreSpace',

@@ -1,5 +1,4 @@
-var _ = require('lodash'),
-  Q = require('q');
+var _ = require('lodash');
 
 var actionsUtils = require('mule-utils/actionsUtils'),
   randomUtils = require('mule-utils/randomUtils'),
@@ -69,8 +68,7 @@ exports.validateQ = function (M, actionOwnerRel, params) {
     moveSubAction.currentPieceSpace = pieceToMove.locationId;
 
     checkMoveValidity(pieceToMove.locationId, moveSubAction.rollUsed[0], moveSubAction.spaceId[0]);
-    var i = 0;
-    _(moveSubAction.spaceId.length - 1).times(function (n) {
+    _.times(moveSubAction.spaceId.length - 1, function (n) {
       checkMoveValidity(moveSubAction.spaceId[0 + n], moveSubAction.rollUsed[1 + n], moveSubAction.spaceId[1 + n]);
     });
 
@@ -119,7 +117,7 @@ exports.doQ = function (M, actionOwnerRel, params) {
   return M.persistQ()
     .then(function () {
       //add meta data
-      return Q(_metadata);
+      return _metadata;
     });
 };
 
@@ -135,7 +133,7 @@ var getRollUsed = function (board, sourceId, destId, color) {
     M.log(distance);
 
     var array = [];
-    _(7 - distance).times(function (i) {
+    _.times(7 - distance, function (i) {
       M.log(distance + i);
       array.push(distance + i);
     });
